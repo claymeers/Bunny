@@ -31,6 +31,7 @@ p {
 header {
     display: flex;
     align-items: center;
+    margin-top: 1.2rem;
 }
 
 .logo img{
@@ -62,6 +63,7 @@ main {
 
 main .content {
     flex: 1;
+    margin-right: 1.5rem;
 }
 
 .content h1 {
@@ -95,15 +97,13 @@ main .content {
     background: #00b2ff;
     color: #fff;
     text-decoration: none;
-    padding: 1.125rem 2rem;
+    padding:  0.8rem;
     border-radius: 0.5rem;
     font-weight: 600;
 }
 
 main .preview {
     flex: 2;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
     border-radius: 5px;
 }
 
@@ -117,6 +117,7 @@ main .preview {
 footer {
     display: flex;
     color: #bdbdbd;
+    font-weight: 600;
 }
 
 .socials {
@@ -230,7 +231,141 @@ footer {
         padding-bottom: 2rem;
     }
 
-    .content .preview {
+    .preview {
         padding: 0;
     }
+
+    .content p, .content a {
+        font-size: 1rem;
+    }
+}
+
+/* Work on video  styling*/
+.preview {
+    max-width: 1000px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(transparent,rgba(0,0,0,.75));
+}
+
+.preview video {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.preview .play-pause {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background-color: #00b2ff;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    opacity: .9;
+    padding: 15px;
+    z-index: 2;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+}
+
+.play-pause img {
+    filter: invert(100%) sepia(0%) saturate(7451%) hue-rotate(319deg) brightness(117%) contrast(100%);
+    padding-left: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+.preview .panel {
+    display: flex;
+    color: #fff;
+    position: absolute;
+    bottom: -50px;
+    opacity: 0;
+    width: 100%;
+    justify-content: space-evenly;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    align-items: center;
+    gap: .5rem;
+    padding: .25rem;
+    transition: all .4s ease-in-out;
+    z-index: 999;
+    background: linear-gradient(transparent,rgba(0,0,0,.75));
+}
+
+.panel button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    opacity: .85;
+    transform: opacity 150ms ease-in-out;
+}
+
+.panel button:hover {
+    opacity: 1;
+}
+
+.panel img {
+    filter: invert(100%) sepia(0%) saturate(7451%) hue-rotate(319deg) brightness(117%) contrast(100%);
+    padding-top: 4px;
+}
+
+.panel .progress {
+    width: 75%;
+    height: 2px;
+    background: #fff;
+    border-radius: 1px;
+}
+
+.volume_controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.volume_controls input[type="range"] {
+  width: 90%;
+}
+
+.preview.paused img.pause {
+    display: none;
+}
+
+.preview:not(.paused) img.play,
+.preview:not(.paused) .play-pause {
+    display: none;
+}
+
+.preview:hover .panel,
+.preview:focus-within .panel,
+.preview.paused .panel {
+    bottom: 0px;
+    opacity: 1;
+}
+
+/* .preview.fullscreen{
+    min-width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+} */
+
+.preview.fullscreen video {
+    border-radius: 0;
+}
+
+.preview.fullscreen img.enter-fullscreen {
+    display: none;
+}
+
+.preview:not(.fullscreen) img.exit-fullscreen {
+    display: none;
 }

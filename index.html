@@ -43,29 +43,57 @@
                     <span><i class="fa-brands fa-vimeo-v"></i> Vimeo</span>  player.</p>
                 <a href="">Get Started</a>   
             </div>
-            <div class="preview">
-                <video src="assets/trailer.mp4"></video>
+            <div class="preview paused">
+                <button class="play-pause">
+                    <img src="assets/sprite/play.svg" alt="">
+                </button>
+                <div class="panel">
+                    <button class="play-btn">
+                        <img src="assets/sprite/play.svg" alt="" class="play">
+                        <img src="assets/sprite/pause.svg" alt="" class="pause">
+                    </button>
+                    <div class="progress"></div>
+                    <div class="current_time">-03:03</div>
+                    <div class="volume_controls">
+                        <button class="mute">
+                            <img src="assets/sprite/volume.svg" alt="" class="volume">
+                            <img src="assets/sprite/muted.svg" alt="" class="muted">
+                        </button>
+                        <input type="range" name="volume" id="volume" min="0" max="1" step="0.05" value="1" role="slider">
+                    </div>
+                    <button class="captions">
+                        <img src="assets/sprite/captions-on.svg" alt="" class="captions-on">
+                        <img src="assets/sprite/captions-off.svg" alt="" class="captions-off">
+                    </button>
+                    <button class="settings"><img src="assets/sprite/settings.svg" alt="" class="settings"></button>
+                    <button class="pip"><img src="assets/sprite/pip.svg" alt="" class="pip"></button>
+                    <button class="full">
+                        <img src="assets/sprite/enter-fullscreen.svg" alt="" class="enter-fullscreen">
+                        <img src="assets/sprite/exit-fullscreen.svg" alt="" class="exit-fullscreen">
+                    </button>
+                </div>
+                <video src="assets/media/trailer.mp4" type="video/mp4"></video>
+                </div>
+            </main>
+            <footer>
+                <div class="socials">
+                    <a href="https://github.com/claymeers" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                    <a href=""><i class="fa-solid fa-at"></i></a>
+                </div>
+                <span>Naveen</span>
+            </footer>
             </div>
-        </main>
-        <footer>
-            <div class="socials">
-                <a href="https://github.com/claymeers" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href=""><i class="fa-brands fa-twitter"></i></a>
-                <a href=""><i class="fa-solid fa-at"></i></a>
-            </div>
-            <span>Naveen</span>
-        </footer>
-
-        <script>
-            function toggle() {
-                const menu = document.querySelector('.menu');
-                if (menu.classList.contains('open')) {
-                    menu.classList.remove('open')
-                } else {
-                    menu.classList.add('open')   
-                }
+    <script>
+        function toggle() {
+            const menu = document.querySelector('.menu');
+            if (menu.classList.contains('open')) {
+                menu.classList.remove('open')
+            } else {
+                menu.classList.add('open')   
             }
-        </script>
-    </div>
+        }
+    </script>
+    <script src="assets/script.js"></script>
 </body>
 </html>

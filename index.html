@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bunny</title>
     <link rel="stylesheet" href="assets/style.css">
-    <link rel="shortcut icon" href="assets/bunny.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/video.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/7b3e06d691.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -55,11 +55,11 @@
                     <div class="progress"></div>
                     <div class="current_time">-03:03</div>
                     <div class="volume_controls">
-                        <button class="mute">
+                        <button class="mute-btn">
                             <img src="assets/sprite/volume.svg" alt="" class="volume">
                             <img src="assets/sprite/muted.svg" alt="" class="muted">
                         </button>
-                        <input type="range" name="volume" id="volume" min="0" max="1" step="0.05" value="1" role="slider">
+                        <input type="range" id="range" name="volume" id="volume" min="0" max="1" step="0.05" value="1" role="slider" autocomplete="off">
                     </div>
                     <button class="captions">
                         <img src="assets/sprite/captions-on.svg" alt="" class="captions-on">
@@ -72,7 +72,11 @@
                         <img src="assets/sprite/exit-fullscreen.svg" alt="" class="exit-fullscreen">
                     </button>
                 </div>
-                <video src="assets/media/trailer.mp4" type="video/mp4"></video>
+                <video
+                    src="assets/media/trailer.mp4" type="video/mp4" 
+                    poster="assets/media/thumbnail.jpg">
+                    <track kind="captions" srclang="en" src="assets/media/trailer.en.vtt">
+                </video>
                 </div>
             </main>
             <footer>

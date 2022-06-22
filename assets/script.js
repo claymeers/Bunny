@@ -8,6 +8,10 @@ const mute = document.querySelector('.mute-btn');
 const volSlider = document.querySelector('.volume_controls input[type="range"]');
 const currentTime = document.querySelector('.current_time')
 const captionsBtn = document.querySelector('.captions');
+const speed = document.querySelector('.speed')
+const progress = document.querySelector('.progress')
+const previewImg = document.querySelector('.preview-img');
+const times = document.querySelector('.previewImg .time')
 
 document.addEventListener('keydown', e => {
     const tagName = document.activeElement.tagName.toLowerCase();
@@ -139,6 +143,8 @@ video.addEventListener('loadeddata', () => {
 video.addEventListener('timeupdate', () => {
     const totalTime = video.duration
     currentTime.textContent = `-${formatDuration(totalTime - video.currentTime)}`
+    const percent = video.currentTime / video.duration
+    progress.style.setProperty('--progress-position', percent)
 })
 
 const leadingZeroFormatter = new Intl.NumberFormat(undefined, {
@@ -171,3 +177,61 @@ function toggleCaptions() {
     captions.mode = isHidden ? "showing" : "hidden"
     preview.classList.toggle('captions', isHidden)
 }
+
+//Speed
+speed.addEventListener('click', changePlaybackSpeed)
+
+function changePlaybackSpeed() {
+    let newPlaybackSpeed = video.playbackRate + .25
+    if (newPlaybackSpeed > 2) newPlaybackSpeed = .25
+    video.playbackRate = newPlaybackSpeed
+    speed.textContent = `${newPlaybackSpeed}x`
+}
+
+//Timeline
+progress.addEventListener('mousemove', handleTimelineUpdate)
+progress.addEventListener('mousedown', toggleScrubbing)
+document.addEventListener('mouseup', e => {
+    if (isScrubbing) toggleScrubbing(e)
+})
+document.addEventListener('mousemove', e => {
+    if (isScrubbing) handleTimelineUpdate(e)
+})
+let isScrubbing = false;
+let wasPaused
+function toggleScrubbing(e) {
+    const rect = progress.getBoundingClientRect()
+    const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
+    isScrubbing= (e.buttons & 1) === 1
+    preview.classList.toggle('scrubbing', isScrubbing)
+    if (isScrubbing) {
+        wasPaused = video.paused
+        // video.pause()
+    } else {
+        video.currentTime = percent * video.duration
+        // if (!wasPaused) video.play()
+    }
+
+    handleTimelineUpdate(e)
+}
+
+function handleTimelineUpdate(e) {
+    const rect = progress.getBoundingClientRect()
+    const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
+    const previewImgNumber = Math.max(1, Math.floor((percent * video.duration) / 10))   
+    const previewImgSrc = `assets/media/previews/preview${previewImgNumber}.jpg`
+    previewImg.src = previewImgSrc
+    times.textContent = formatDuration(percent * video.duration)
+    progress.style.setProperty('--preview-position', percent)
+
+    if (isScrubbing) {
+        e.preventDefault()
+    }
+}
+
+
+//Tracks styling
+const eminem = document.getElementsByTagName('video')[0]
+const tracks = eminem.textTracks[0]
+const active_cues = tracks.cues[0]
+console.log(tracks.length)

@@ -2,9 +2,9 @@
 # Bunny 🎬
 Bunny is a simple, lightweight, accessible and customizable HTML5, YouTube and Vimeo video player that supports [_modern_](#browser-support) browsers.
 
-[Checkout the demo](https://plyr.io)
+[Checkout the demo](https://bunny-pegasus.netlify.app/)
 
-[![Image of Plyr](https://cdn.plyr.io/static/demo/screenshot.png?v=3)](https://plyr.io)
+[![Image of Plyr](https://cdn.plyr.io/static/demo/screenshot.png?v=3)](https://bunny-pegasus.netlify.app/)
 
 # Features
 
@@ -29,3 +29,4 @@ The idea is to design a beautiful cross-platform video editor that lets you pres
 # Author
 
 Bunny is developed by [@Naveen](https://github.com/claymeers)
+<!-- plyr.io -->
